@@ -40,11 +40,15 @@ Shell Tutorial
   - [文件测试操作符](#文件测试操作符)
   - [比较操作符](#比较操作符)
 - [操作字符串](#操作字符串)
-- [循环和分支](#循环和分支)
-  - [Loops](#Loops)
+- [for/while](#forwhiles)
+  - [for](#for)
+  - [while](#while)
+  - [until](#until)
   - [嵌套循环](#嵌套循环)
   - [循环控制](#循环控制)
 - [case/select](#caseselect)
+  - [case](#case)
+  - [select](#select)
 
 
 
@@ -65,11 +69,13 @@ echo $NUM
 chmod +x ./demo1   # 使每个人都有执行的权限
 chmod +rx ./demo1  # 使每个人都有读和执行的权限
 chmod u+rx ./demo1 # 仅仅使脚本文件拥有者有读和执行的权限
+chmod u+x ./demo1  # 只有自己可以执行，其它人不能执行
+chmod ug+x ./demo1 # 只有自己以及同一群可以执行，其它人不能执行 
 chmod 555 ./demo1  # 使每个人都有读和执行的权限
-chmod 777 ./demo1
+chmod 777 ./demo1 
 ```
 
-当前目录下运行 demo1 脚本
+当前目录下运行 [demo1](./example/demo1) 脚本
 
 ```bash
 ./demo1
@@ -467,7 +473,10 @@ echo $myUrl
 | $LINENO | 这个变量表示在本shell脚本中该变量出现时所在的行数。它只在脚本中它出现时有意义，它一般可用于调试。|
 | $MACHTYPE | 机器类型，识别系统的硬件类型。|
 | $OLDPWD | 上一次工作的目录("OLD-print-working-directory",你上一次进入工作的目录)|
-| $OSTYPE | 操作系统类型|
+| $TZ | 时区 |
+| $MAILCHECK | 每隔多少秒检查是否有新的信件 |
+| $OSTYPE | 操作系统类型 |
+| $MANPATH man | 指令的搜寻路径 |
 | $PATH | 可执行程序文件的搜索路径。一般有/usr/bin/, /usr/X11R6/bin/, /usr/local/bin,等等。|
 | $PIPESTATUS | 此数组变量保存了最后执行的前台管道的退出状态。相当有趣的是，它不一定和最后执行的命令的退出状态一样。|
 | $PPID | 一个进程的$PPID变量保存它的父进程的进程ID(pid)。用这个变量和pidof命令比较。|
@@ -717,8 +726,6 @@ echo $?    # 因为上一条命令执行成功，打印0。
 lskdf      # 无效命令。
 echo $?    # 因为上面的无效命令执行失败，打印一个非零的值。
 
-echo
-
 exit 113   # 返回113状态码给shell。
            # 可以运行脚本结束后立即执行命令"echo $?" 检验。
 
@@ -964,10 +971,9 @@ echo | awk '{
 exit 0
 ```
 
+## for/while
 
-## 循环和分支
-
-### Loops
+### for
 
 重复一些命令的代码块，如果条件不满足就退出循环，下面是一个基本的循环结构。[demo27](./example/demo27)
 
@@ -985,6 +991,79 @@ for planet in Mercury Venus Earth Mars Jupiter Saturn Uranus Neptune Pluto
 do
   echo $planet  # 每个行星被单独打印在一行上.
 done
+```
+
+### while
+
+一个while循环可以有多个判断条件，但是只有最后一个才能决定是否退出循环。然而这需要一种有点不同的循环语法。
+
+> while [condition]
+> do 
+>   command... 
+> done
+
+```shell
+# --------------------------
+# 简单的while循环
+# --------------------------
+var0=0
+LIMIT=10
+
+while [ "$var0" -lt "$LIMIT" ]
+do
+  echo -n "$var0 "        # -n 将会阻止产生新行。
+  #             ^           空格,数字之间的分隔。
+  var0=`expr $var0 + 1`   # var0=$(($var0+1))  也可以。
+                          # var0=$((var0 + 1)) 也可以。
+                          # let "var0 += 1"    也可以。
+done                      # 使用其他的方法也行。
+# --------------------------
+# 多条件的while循环
+# --------------------------
+var1=unset
+previous=$var1
+
+while echo "previous-variable = $previous"
+      echo
+      previous=$var1
+      [ "$var1" != end ] # 记录之前的$var1.
+      # 这个"while"循环中有4个条件, 但是只有最后一个能控制循环.
+      # 退出状态由第4个条件决定.
+do
+echo "Input variable #1 (end to exit) "
+  read var1
+  echo "variable #1 = $var1"
+done 
+exit 0
+```
+
+### until
+
+这个结构在循环的顶部判断条件，并且如果条件一直为false那就一直循环下去。(与while相反)。
+
+> until [condition-is-true]
+> do 
+>   command... 
+> done
+
+**注意⚠️**
+
+1. until循环的判断在循环的顶部，这与某些编程语言是不同的。
+2. 与for循环一样，如果想把do和条件放在一行里，就使用";"。
+
+> until [condition-is-true] ; do
+
+```shell
+END_CONDITION=end
+until [ "$var1" = "$END_CONDITION" ]
+# 在循环的顶部判断条件.
+do
+  echo "Input variable #1 "
+  echo "($END_CONDITION to exit)"
+  read var1
+  echo "variable #1 = $var1"
+done
+exit 0
 ```
 
 ### 嵌套循环
@@ -1018,7 +1097,6 @@ done
 exit 0
 ```
 
-
 ### 循环控制
 
 影响循环行为的命令 `break`， `continue`， break命令将会跳出循环，continue命令将会跳过本次循环下边的语句，直接进入下次循环。[demo29](./example/demo29)
@@ -1041,15 +1119,13 @@ do
 done 
 ```
 
-
 ## case/select
 
 case/select依靠在代码块的顶部或底部的条件判断来决定程序的分支。
 
-### case(in)/esac
+### case
 
 case它允许通过判断来选择代码块中多条路径中的一条。它的作用和多个if/then/else语句相同，是它们的简化结构，特别适用于创建目录。[demo30](./example/demo30)
-
 
 > case "$variable" in 
 > ?"$condition1" ) 
@@ -1059,7 +1135,6 @@ case它允许通过判断来选择代码块中多条路径中的一条。它的�
 > ?command... 
 > ?;; 
 > esac
-
 
 - 对变量使用`""`并不是强制的，因为不会发生单词分离。
 - 每句测试行，都以右小括号`)`结尾。
