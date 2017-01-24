@@ -32,7 +32,7 @@ echo ${stringZ: -4}                          # Cabc
 
 
 stringZ=abcABC123ABCabc
-#       ^______________      
+#       └┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
 # 下面被我注释的例子在我 Mac上报错，这个看上去是 bash 的版本问题
 # echo `expr match "$stringZ" '\(.[b-c]*[A-Z]..[0-9]\)'`   # abcABC1

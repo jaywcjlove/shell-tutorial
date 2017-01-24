@@ -794,7 +794,6 @@ elif是else if的缩写。作用是在一个if/then里嵌入一个内部的if/th
 | f1 -ef f2 | 文件f1和f2 是相同文件的硬链接 |
 | ! | "非" -- 反转上面所有测试的结果(如果没有给出条件则返回真)。|
 
-
 **注意⚠️**
 
 1. `-t` 这个测试选项可以用于检查脚本中是否标准输入 ([ -t 0 ])或标准输出([ -t 1 ])是一个终端。
@@ -835,6 +834,8 @@ elif是else if的缩写。作用是在一个if/then里嵌入一个内部的if/th
 
 **混合比较**
 
+| 比较操作符 | 描述 | 例子 |
+| ---- | ---- | ---- |
 | -a | 逻辑与，如果exp1和exp2都为真，则exp1 -a exp2返回真。 | `if [ "$exp1" -a "$exp2" ]` |
 | -o | 逻辑或，只要exp1和exp2任何一个为真，则exp1 -o exp2 返回真。 | `if [ "$exp1" -o "$exp2" ]` |
 
@@ -861,7 +862,7 @@ echo `expr "$String" : '.*'`    # 15
 
 ```shell
 String=abcABC123ABCabc
-#       |------|
+#       └------┘
 #       
 echo `expr match "$String" 'abc[A-Z]*.2'`   # 8
 echo `expr "$String" : 'abc[A-Z]*.2'`       # 8
@@ -918,8 +919,8 @@ echo ${String: -4}                          # Cabc
 
 ```shell
 String=abcABC123ABCabc
-#       |----|
-#       |----------|
+#       ├----┘     ┆
+#       └----------┘
 
 echo ${String#a*C}      # 123ABCabc
 # 剥去匹配'a'到'C'之间最短的字符串.
@@ -929,8 +930,8 @@ echo ${String##a*C}     # abc
 
 
 String=abcABC123ABCabc
-#                    ||
-#        |------------|
+#       ┆           ||
+#       └------------┘
 
 echo ${String%b*c}      # abcABC123ABCa
 # 从$String后面尾部开始，剥去匹配'a'到'C'之间最短的字符串.
@@ -1025,21 +1026,18 @@ exit 0
 ```shell
 LIMIT=19  # 上限
 
-echo
 echo "Printing Numbers 1 through 20 (but not 3 and 11)."
 
 a=0
 
 while [ $a -le "$LIMIT" ]
 do
- a=$(($a+1))
-
- if [ "$a" -eq 3 ] || [ "$a" -eq 11 ]  # Excludes 3 and 11.
- then
-   continue      # 跳过本次循环剩下的语句.
- fi
-
- echo -n "$a "   # 在$a等于3和11的时候,这句将不会执行.
+  a=$(($a+1))
+  if [ "$a" -eq 3 ] || [ "$a" -eq 11 ]  # Excludes 3 and 11.
+  then
+    continue      # 跳过本次循环剩下的语句.
+  fi
+  echo -n "$a "   # 在$a等于3和11的时候,这句将不会执行.
 done 
 ```
 
@@ -1116,13 +1114,11 @@ exit 0
 
 select结构是建立菜单的另一种工具，这种结构是从ksh中引入的。
 
->>>
-select variable [in list]
-do 
-?command... 
-?break 
-done
->>>
+> select variable [in list]
+> do 
+> ?command... 
+> ?break 
+> done
 
 用select来创建菜单
 
