@@ -1,0 +1,60 @@
+#!/bin/bash
+# escaped.sh: 转义字符
+
+echo; echo
+
+echo "\v\v\v\v"      # 打印出 \v\v\v\v literally.
+# 用带着选项-e的'echo'会打印出转义字符串.
+echo "============="
+echo "VERTICAL TABS"
+echo -e "\v\v\v\v"   # 打印四个垂直的制表符.
+echo "=============="
+
+echo "QUOTATION MARK"
+echo -e "\042"       # 打印出字符" (引号, 它的八进制ASCII码为42).
+echo "=============="
+
+# 当使用像$'\X'的结构时，-e选项是多余的.
+echo; echo "NEWLINE AND BEEP"
+echo $'\n'           # 新行.
+echo $'\a'           # 警告 (蜂鸣).
+
+echo "==============="
+echo "QUOTATION MARKS"
+# 版本2开始Bash已经允许使用$'\nnn'结构了.
+# 注意在这里,'\nnn'表示一个八进制的值.
+echo $'\t \042 \t'   # Quote (") framed by tabs.
+
+# 使用$'\xhhh'结构也可以使用十六进制数来转义.
+echo $'\t \x22 \t'  # Quote (") framed by tabs.
+# 多谢Greg Keraunen指出这个..
+# 早期的Bash版本允许用'\x022'.（译者注，现在不行了）
+echo "==============="
+echo
+
+
+# 用ASCII码值把字符赋给变量.
+# ----------------------------------------
+quote=$'\042'        # 引号"被赋给变量quote了.
+echo "$quote This is a quoted string, $quote and this lies outside the quotes."
+
+echo
+
+# 用连串的ASCII码把一串字符赋给变量..
+triple_underline=$'\137\137\137'  # 137是字符'_'的ASCII码.
+echo "$triple_underline UNDERLINE $triple_underline"
+
+echo
+
+ABC=$'\101\102\103\010'           # 101, 102, 103分别是A, B, C字符的八进制ASCII码.
+echo $ABC
+
+echo; echo
+
+escape=$'\033'                    # 033是ESC的ASCII码的八进制值
+echo "\"escape\" echoes as $escape"
+#                                   不可见的输出.
+
+echo; echo
+
+exit 0
