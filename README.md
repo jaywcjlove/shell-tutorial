@@ -40,7 +40,7 @@ Shell Tutorial
   - [文件测试操作符](#文件测试操作符)
   - [比较操作符](#比较操作符)
 - [操作字符串](#操作字符串)
-- [for/while](#forwhiles)
+- [for/while](#forwhile)
   - [for](#for)
   - [while](#while)
   - [until](#until)
@@ -973,14 +973,16 @@ exit 0
 
 ## for/while
 
+重复一些命令的代码块,如果条件不满足就退出循环。
+
 ### for
 
-重复一些命令的代码块，如果条件不满足就退出循环，下面是一个基本的循环结构。[demo27](./example/demo27)
+在循环的每次执行中，arg将顺序的存取list中列出的变量，下面是一个基本的循环结构。[demo27](./example/demo27)
 
-> for arg in [list]
-> do 
->    command(s)... 
-> done
+> for arg in [list]  
+> do   
+>    command(s)...   
+> done  
 
 每个`[list]`中的元素都可能包含多个参数，在处理参数组时，这是非常有用的，使用set命令来强制解析每个`[list]`中的元素。并且分配每个解析出来的部分到一个位置参数中。
 
@@ -997,10 +999,10 @@ done
 
 一个while循环可以有多个判断条件，但是只有最后一个才能决定是否退出循环。然而这需要一种有点不同的循环语法。
 
-> while [condition]
-> do 
->   command... 
-> done
+> while [condition]  
+> do   
+>   command...   
+> done  
 
 ```shell
 # --------------------------
@@ -1041,10 +1043,10 @@ exit 0
 
 这个结构在循环的顶部判断条件，并且如果条件一直为false那就一直循环下去。(与while相反)。
 
-> until [condition-is-true]
-> do 
->   command... 
-> done
+> until [condition-is-true]  
+> do   
+>   command...   
+> done  
 
 **注意⚠️**
 
@@ -1127,14 +1129,14 @@ case/select依靠在代码块的顶部或底部的条件判断来决定程序的
 
 case它允许通过判断来选择代码块中多条路径中的一条。它的作用和多个if/then/else语句相同，是它们的简化结构，特别适用于创建目录。[demo30](./example/demo30)
 
-> case "$variable" in 
-> ?"$condition1" ) 
-> ?command... 
-> ?;; 
-> ?"$condition2" ) 
-> ?command... 
-> ?;; 
-> esac
+> case "$variable" in   
+>   ?"$condition1" )   
+>   ?command...   
+>   ?;;   
+>   ?"$condition2" )   
+>   ?command...   
+>   ?;;   
+> esac  
 
 - 对变量使用`""`并不是强制的，因为不会发生单词分离。
 - 每句测试行，都以右小括号`)`结尾。
@@ -1189,11 +1191,11 @@ exit 0
 
 select结构是建立菜单的另一种工具，这种结构是从ksh中引入的。
 
-> select variable [in list]
-> do 
-> ?command... 
-> ?break 
-> done
+> select variable [in list]  
+> do   
+>   ?command...   
+>   ?break   
+> done  
 
 用select来创建菜单
 
