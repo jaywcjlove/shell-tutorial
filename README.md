@@ -49,6 +49,10 @@ Shell Tutorial
 - [case/select](#caseselect)
   - [case](#case)
   - [select](#select)
+- [函数](#函数)
+  - [局部变量](#局部变量)
+  - [函数参数](#函数参数)
+  - [函数返回值](#函数返回值)
 
 
 
@@ -1237,3 +1241,134 @@ choice_of "豆" "米饭" "胡萝卜" "土豆" "洋葱" "芜菁甘蓝"
 
 exit 0
 ```
+
+## 函数
+
+和"真正的"编程语言一样，Bash也有函数，虽然在某些实现方面稍有些限制。 一个函数是一个子程序，用于实现一串操作的代码块(code block)，它是完成特定任务的"黑盒子"。 当有重复代码，当一个任务只需要很少的修改就被重复几次执行时, 这时你应考虑使用函数。 [demo33](./example/demo33)
+
+```shell
+function function_name { 
+  command... 
+} 
+# 或
+function_name () { 
+  command... 
+} 
+```
+
+在一个函数内嵌套另一个函数也是可以的，但是不常用。
+
+```shell
+f1 (){
+  f2 (){ # nested
+    echo "Function \"f2\", inside \"f1\"."
+  }
+}  
+f2  #  引起错误.
+    #  就是你先"declare -f f2"了也没用.
+
+f1  #  什么也不做,因为调用"f1"不会自动调用"f2".
+f2  #  现在,可以正确的调用"f2"了,
+    #+ 因为之前调用"f1"使"f2"在脚本中变得可见了.
+```
+
+### 局部变量
+
+如果变量用local来声明，那么它只能在该变量声明的代码块(block of code)中可见，这个代码块就是局部"范围"。
+
+```shell
+# 在函数内部的全局和局部变量.
+func ()
+{
+  local loc_var=23       # 声明为局部变量.
+  echo                   # 使用内建的'local'关键字.
+  echo "\"loc_var\" in function = $loc_var"
+  global_var=999         # 没有声明为局部变量.
+                         # 默认为全局变量. 
+  echo "\"global_var\" in function = $global_var"
+}  
+
+func
+# 现在，来看看是否局部变量"loc_var"能否在函数外面可见.
+echo "\"loc_var\" outside function = $loc_var"
+                                   # $loc_var outside function = 
+                                   # 不, $loc_var不是全局可访问的.
+echo "\"global_var\" outside function = $global_var"
+                                      # $global_var outside function = 999
+                                      # $global_var 是全局可访问的.
+exit 0
+#  与In contrast to C相比, 在函数内声明的Bash变量只有在
+#+ 它被明确声明成局部的变量时才是局部的
+```
+
+⚠️ ：在函数调用之前，所有在函数内声明且没有明确声明为local的变量都可在函数体外可见
+
+```shell
+func (){
+  global_var=37    #  在函数还没有被调用前
+                   #+ 变量只在函数内可见. 
+}                  #  函数结束
+echo "global_var = $global_var"  # global_var =
+                                 #  函数"func"还没有被调用,
+                                 #+ 所以变量$global_var还不能被访问.
+func
+echo "global_var = $global_var"  # global_var = 37
+                                 # 已经在函数调用时设置了值.
+```
+
+### 函数参数
+
+在Shell中，调用函数时可以向其传递参数。在函数体内部，通过 `$n` 的形式来获取参数的值，例如，$1表示第一个参数，$2表示第二个参数
+
+```shell
+funWithParam(){
+    echo "第一个参数为 $1 !"
+    echo "第二个参数为 $2 !"
+    echo "第十个参数为 $10 !"
+    echo "第十个参数为 ${10} !"
+    echo "第十一个参数为 ${11} !"
+    echo "参数总数有 $# 个!"
+    echo "作为一个字符串输出所有参数 $* !"
+}
+funWithParam 1 2 3 4 5 6 7 8 9 34 73
+```
+
+### 函数返回值
+
+定义一个带有return语句的函数。函数返回值在调用该函数后通过 `$?` 来获得。
+
+```shell
+funWithReturn(){
+    echo "这个函数会对输入的两个数字进行相加运算..."
+    echo "输入第一个数字: "
+    read aNum
+    echo "输入第二个数字: "
+    read anotherNum
+    echo "两个数字分别为 $aNum 和 $anotherNum !"
+    return $(($aNum+$anotherNum))
+}
+funWithReturn
+echo "输入的两个数字之和为 $? !"
+
+# 这个函数会对输入的两个数字进行相加运算...
+# 输入第一个数字: 
+# 1
+# 输入第二个数字: 
+# 2
+# 两个数字分别为 1 和 2 !
+# 输入的两个数字之和为 3 !
+```
+
+⚠️ `$10` 不能获取第十个参数，获取第十个参数需要${10}。当n>=10时，需要使用${n}来获取参数。
+
+**特殊字符用来处理参数: **
+
+| 参数处理 | 说明 |
+| ---- | ----  |
+| $# | 传递到脚本的参数个数  |
+| $* | 以一个单字符串显示所有向脚本传递的参数  |
+| $$ | 脚本运行的当前进程ID号  |
+| $! | 后台运行的最后一个进程的ID号  |
+| $@ | 与$*相同，但是使用时加引号，并在引号中返回每个参数。  |
+| $- | 显示Shell使用的当前选项，与set命令功能相同。  |
+| $? | 显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。  |
