@@ -1,4 +1,4 @@
-name: build
+name: CI
 on:
   push:
     branches:
@@ -15,9 +15,28 @@ jobs:
 
       - run: mkdir -p build
       - run: cp -rp example build
-      - run: npm i markdown-to-html-cli -g
-      - run: markdown-to-html --output build/index.html
-      - run: markdown-to-html -s shell-regex.md --output build/shell-regex.html
+      # - run: npm i markdown-to-html-cli -g
+      # - run: markdown-to-html --output build/index.html
+      # - run: markdown-to-html -s shell-regex.md --output build/shell-regex.html
+
+      - name: Generate Contributors Images
+        uses: jaywcjlove/github-action-contributors@main
+        with:
+          filter-author: (renovate\[bot\]|renovate-bot|dependabot\[bot\])
+          output: build/CONTRIBUTORS.svg
+          avatarSize: 42
+
+      - name: Converts Markdown to HTML
+        uses: jaywcjlove/markdown-to-html-cli@main
+        with:
+          source: README.md
+          output: build/index.html
+
+      - name: Converts Markdown to HTML
+        uses: jaywcjlove/markdown-to-html-cli@main
+        with:
+          source: shell-regex.md
+          output: build/shell-regex.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

@@ -1,6 +1,7 @@
-
 Shell Tutorial
 ===
+
+[![CI](https://github.com/jaywcjlove/shell-tutorial/actions/workflows/ci.yml/badge.svg)](https://github.com/jaywcjlove/shell-tutorial/actions/workflows/ci.yml)
 
 最近需要写一个脚本管理服务，花了两天时间学习了一下shell脚本，记录我的学习笔记。
 
@@ -1401,3 +1402,17 @@ echo "输入的两个数字之和为 $? !"
 | $@ | 与$*相同，但是使用时加引号，并在引号中返回每个参数。  |
 | $- | 显示Shell使用的当前选项，与set命令功能相同。  |
 | $? | 显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。  |
+
+## Contributors
+
+As always, thanks to our amazing contributors!
+
+<a href="https://github.com/jaywcjlove/shell-tutorial/graphs/contributors">
+  <img src="https://jaywcjlove.github.io/shell-tutorial/CONTRIBUTORS.svg" />
+</a>
+
+Made with [action-contributors](https://github.com/jaywcjlove/github-action-contributors).
+
+## License
+
+Licensed under the MIT License.
