@@ -1,13 +1,22 @@
 {
-  "markdown-to-html": {
-    "document": {
-      "title": "Shell Tutorial 入门教程（Shell tutorial book）",
-      "meta": [
-        { "description": "Shell入门教程（Shell tutorial book）" },
-        { "keywords": "Shell,tutorial" }
-      ]
-    },
-    "github-corners": "https://github.com/jaywcjlove/shell-tutorial",
-    "favicon": "data:image/svg+xml,<svg viewBox=%220 0 1024 1024%22 xmlns=%22http://www.w3.org/2000/svg%22><style> path {fill: green; } @media (prefers-color-scheme: dark) { path { fill: white; } } </style><path d=%22M128 128h768a42.667 42.667 0 0 1 42.667 42.667v682.666A42.667 42.667 0 0 1 896 896H128a42.667 42.667 0 0 1-42.667-42.667V170.667A42.667 42.667 0 0 1 128 128z m384 512v85.333h256V640H512zM358.997 512L238.336 632.661l60.33 60.374L479.702 512 298.667 330.965l-60.331 60.374L358.997 512z%22></path></svg>"
+  "$schema": "https://json.schemastore.org/package.json",
+  "private": true,
+  "name": "shell-tutorial",
+  "description": "Shell Tutorial 入门教程（Shell tutorial book）",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "idoc --watch",
+    "build": "idoc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaywcjlove/shell-tutorial"
+  },
+  "keywords": [
+    "Shell",
+    "tutorial"
+  ],
+  "dependencies": {
+    "idoc": "^1.10.1"
   }
 }

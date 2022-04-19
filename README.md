@@ -1,9 +1,13 @@
+<!--idoc:ignore:start-->
 Shell Tutorial
 ===
+<!--idoc:ignore:end-->
 
 [![CI](https://github.com/jaywcjlove/shell-tutorial/actions/workflows/ci.yml/badge.svg)](https://github.com/jaywcjlove/shell-tutorial/actions/workflows/ci.yml)
 
 最近需要写一个脚本管理服务，花了两天时间学习了一下shell脚本，记录我的学习笔记。
+
+<!--idoc:ignore:start-->
 
 ## 目录
 
@@ -55,7 +59,7 @@ Shell Tutorial
   - [函数参数](#函数参数)
   - [函数返回值](#函数返回值)
 
-
+<!--idoc:ignore:end-->
 
 ## 脚本运行
 
