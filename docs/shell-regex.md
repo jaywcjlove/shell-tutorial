@@ -3,12 +3,16 @@ Shell RegEx
 
 ⚠️ 创建了一个[新仓库](https://github.com/jaywcjlove/regexp-example)，方便专门搜集讨论正则相关内容。顺便将下面内容整理到了[新仓库](https://github.com/jaywcjlove/regexp-example)。=> [`@jaywcjlove/regexp-example`](https://github.com/jaywcjlove/regexp-example)
 
+<!--idoc:ignore:start-->
+
 ## 目录
 
 - [正则表达式的分类](#正则表达式的分类)
 - [基本组成部分](#基本组成部分)
 - [POSIX字符类](#posix字符类)
 - [元字符](#元字符)
+
+<!--idoc:ignore:end-->
 
 ## 正则表达式的分类
 
@@ -36,7 +40,7 @@ Shell RegEx
 | {n} | 匹配之前的项n次，n是可以为0的正整数 | [0-9]{3}匹配任意一个三位数，可以扩展为[0-9][0-9][0-9] | 不支持 | {n} | {n} | {n} |
 | {n,} | 之前的项至少需要匹配n次 | [0-9]{2,}匹配任意一个两位数或更多位数 | 不支持 | {n,} | {n,} | {n,} |
 | {n,m} | 指定之前的项至少匹配n次，最多匹配m次，n&lt;=m | [0-9]{2,5}匹配从两位数到五位数之间的任意一个数字 | 不支持 | {n,m} | {n,m} | {n,m} |
-| `|` | 交替匹配|两边的任意一项 | `ab(c|d)`匹配abc或abd | 不支持 | `|` | `|` | `|` |
+| `\|` | 交替匹配|两边的任意一项 | `ab(c|d)`匹配abc或abd | 不支持 | `\|` | `\|` | `\|` |
 
 ## POSIX字符类
 
@@ -51,7 +55,8 @@ POSIX字符类是一个形如[:...:]的特殊元序列（meta sequence），他�
 | [:lower:] | 匹配小写字母 | [[:lower:]]{5,} | [:lower:] | [:lower:] | [:lower:] | [:lower:] |
 | [:upper:] | 匹配大写字母 | ([[:upper:]]+)? | [:upper:] | [:upper:] | [:upper:] | [:upper:] |
 | [:punct:] | 匹配标点符号 | [[:punct:]] | [:punct:] | [:punct:] | [:punct:] | [:punct:] |
-| [:space:] | 匹配一个包括换行符、回车等在内的所有空白符 | [[:space:]]+ | [:space:] | [:space:] | [:space:] | [:space:] |
+| [:space:] | 匹配
+一个包括换行符、回车等在内的所有空白符 | [[:space:]]+ | [:space:] | [:space:] | [:space:] | [:space:] |
 | [:graph:] | 匹配任何一个可以看得见的且可以打印的字符 | [[:graph:]] | [:graph:] | [:graph:] | [:graph:] | [:graph:] |
 | [:xdigit:] | 任何一个十六进制数（即：0-9，a-f，A-F） | [[:xdigit:]]+ | [:xdigit:] | [:xdigit:] | [:xdigit:] | [:xdigit:] |
 | [:cntrl:] | 任何一个控制字符（[ASCII](http://zh.wikipedia.org/zh/ASCII)字符集中的前32个字符) | [[:cntrl:]] | [:cntrl:] | [:cntrl:] | [:cntrl:] | [:cntrl:] |
