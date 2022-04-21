@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shell RegEx Shell Tutorial </title>
+  
+  <meta name="description" content="⚠️ 创建了一个新仓库，方便专门搜集讨论正则相关内容。顺便将下面内容整理到了新仓库。=&gt; @jaywcjlove/regexp-example">
+  
+  
+  <meta name="keywords" content="Shell,tutorial">
+  
+  <link rel="stylesheet" type="text/css" href="css/main.css?v=1650561972210">
+  <link rel="stylesheet" type="text/css" href="css/tocbot.css?v=1650561972210">
+  <link rel="stylesheet" type="text/css" href="css/media.css?v=1650561972210">
+  <link rel="stylesheet" type="text/css" href="css/sidebar.css?v=1650561972210">
+  <link rel="stylesheet" type="text/css" href="css/copy.css?v=1650561972210">
+  
+    <link rel="icon" href="logo.svg" type="image/x-icon">
+  
+  <script src="js/copy.js"></script>
+  <script src="js/dark-mode.js"></script>
+  <script src="js/markdown-style.js"></script>
+</head>
+<body>
+<header class="header">
+  <article class="inner warpper">
+    <a class="logo" href="index.html">
+      
+        <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M896 810.666667c0 46.933333-38.4 85.333333-85.333333 85.333333H213.333333c-46.933333 0-85.333333-38.4-85.333333-85.333333V213.333333c0-46.933333 38.4-85.333333 85.333333-85.333333h597.333334c46.933333 0 85.333333 38.4 85.333333 85.333333v597.333334zM250.666667 496.64l176.469333 64.469333 5.546667 1.194667-0.298667 1.706667-5.248 0.597333-176.469333 65.92v69.717333l251.989333-108.501333v-56.32l-251.989333-108.458667v69.717334z m541.909333 284.416V725.333333h-267.434667v55.722667h267.434667z"  fill="currentColor"></path>
+</svg>
+      
+      <span class="title">Shell Tutorial</span>
+    </a>
+    <div class="content">
+      <ul class="menu">
+        
+        <li>
+          <a href="index.html" target="" class=""> Home </a>
+        </li>
+        
+        <li>
+          <a href="shell-regex.html" target="" class="active"> Regex </a>
+        </li>
+        
+      </ul>
+      
+        <a href="https://github.com/jaywcjlove/shell-tutorial" target="_blank" rel="noopener noreferrer" title="Github" name="Github" class="github">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+          </svg>
+        </a>
+      
+      <dark-mode permanent></dark-mode>
+    </div>
+  </article>
+</header>
+
+<div class="warpper-content warpper  ">
+  
+  <markdown-style>
+    <h1 id="shell-regex"><a aria-hidden="true" tabindex="-1" href="#shell-regex" class="anchor"><span class="icon icon-link"></span></a>Shell RegEx</h1>
+<p>⚠️ 创建了一个<a href="https://github.com/jaywcjlove/regexp-example">新仓库</a>，方便专门搜集讨论正则相关内容。顺便将下面内容整理到了<a href="https://github.com/jaywcjlove/regexp-example">新仓库</a>。=> <a href="https://github.com/jaywcjlove/regexp-example"><code>@jaywcjlove/regexp-example</code></a></p>
+
+<h2 id="正则表达式的分类"><a aria-hidden="true" tabindex="-1" href="#正则表达式的分类" class="anchor"><span class="icon icon-link"></span></a>正则表达式的分类</h2>
+<ol>
+<li>基本的正则表达式（Basic Regular Expression 又叫Basic RegEx 简称BREs）</li>
+<li>扩展的正则表达式（Extended Regular Expression 又叫Extended RegEx 简称EREs）</li>
+<li>Perl的正则表达式（Perl Regular Expression 又叫Perl RegEx 简称PREs）</li>
+</ol>
+<h2 id="基本组成部分"><a aria-hidden="true" tabindex="-1" href="#基本组成部分" class="anchor"><span class="icon icon-link"></span></a>基本组成部分</h2>
+<p>正则表达式的基本组成部分。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>正则表达式</th><th>描述</th><th>示例</th><th>Basic RegEx</th><th>Extended RegEx</th><th>Python RegEx</th><th>Perl regEx</th></tr></thead><tbody><tr><td>\</td><td>转义符，将特殊字符进行转义，忽略其特殊意义</td><td>a.b匹配a.b，但不能匹配ajb，.被转义为特殊意义</td><td>\</td><td>\</td><td>\</td><td>\</td></tr><tr><td>^</td><td>匹配行首，awk中，^则是匹配字符串的开始</td><td>^tux匹配以tux开头的行</td><td>^</td><td>^</td><td>^</td><td>^</td></tr><tr><td>$</td><td>匹配行尾，awk中，$则是匹配字符串的结尾</td><td>tux$匹配以tux结尾的行</td><td>$</td><td>$</td><td>$</td><td>$</td></tr><tr><td>.</td><td>匹配除换行符\n之外的任意单个字符，awk则中可以</td><td>ab.匹配abc或bad，不可匹配abcd或abde，只能匹配单字符</td><td>.</td><td>.</td><td>.</td><td>.</td></tr><tr><td>[]</td><td>匹配包含在[字符]之中的任意一个字符</td><td>coo[kl]可以匹配cook或cool</td><td>[]</td><td>[]</td><td>[]</td><td>[]</td></tr><tr><td>[^]</td><td>匹配[^字符]之外的任意一个字符</td><td>123[^45]不可以匹配1234或1235，1236、1237都可以</td><td>[^]</td><td>[^]</td><td>[^]</td><td>[^]</td></tr><tr><td>[-]</td><td>匹配[]中指定范围内的任意一个字符，要写成递增</td><td>[0-9]可以匹配1、2或3等其中任意一个数字</td><td>[-]</td><td>[-]</td><td>[-]</td><td>[-]</td></tr><tr><td>?</td><td>匹配之前的项1次或者0次</td><td>colou?r可以匹配color或者colour，不能匹配colouur</td><td>不支持</td><td>?</td><td>?</td><td>?</td></tr><tr><td>+</td><td>匹配之前的项1次或者多次</td><td>sa-6+匹配sa-6、sa-666，不能匹配sa-</td><td>不支持</td><td>+</td><td>+</td><td>+</td></tr><tr><td>*</td><td>匹配之前的项0次或者多次</td><td>co*l匹配cl、col、cool、coool等</td><td>*</td><td>*</td><td>*</td><td>*</td></tr><tr><td>()</td><td>匹配表达式，创建一个用于匹配的子串</td><td>ma(tri)?匹配max或maxtrix</td><td>不支持</td><td>()</td><td>()</td><td>()</td></tr><tr><td>{n}</td><td>匹配之前的项n次，n是可以为0的正整数</td><td>[0-9]{3}匹配任意一个三位数，可以扩展为[0-9][0-9][0-9]</td><td>不支持</td><td>{n}</td><td>{n}</td><td>{n}</td></tr><tr><td>{n,}</td><td>之前的项至少需要匹配n次</td><td>[0-9]{2,}匹配任意一个两位数或更多位数</td><td>不支持</td><td>{n,}</td><td>{n,}</td><td>{n,}</td></tr><tr><td>{n,m}</td><td>指定之前的项至少匹配n次，最多匹配m次，n&#x3C;=m</td><td>[0-9]{2,5}匹配从两位数到五位数之间的任意一个数字</td><td>不支持</td><td>{n,m}</td><td>{n,m}</td><td>{n,m}</td></tr><tr><td><code>|</code></td><td>交替匹配</td><td>两边的任意一项</td><td>`ab(c</td><td>d)`匹配abc或abd</td><td>不支持</td><td><code>|</code></td></tr></tbody></table>
+<h2 id="posix字符类"><a aria-hidden="true" tabindex="-1" href="#posix字符类" class="anchor"><span class="icon icon-link"></span></a>POSIX字符类</h2>
+<p>POSIX字符类是一个形如[:...:]的特殊元序列（meta sequence），他可以用于匹配特定的字符范围。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>正则表达式</th><th>描述</th><th>示例</th><th>Basic RegEx</th><th>Extended RegEx</th><th>Python RegEx</th><th>Perl regEx</th></tr></thead><tbody><tr><td>[:alnum:]</td><td>匹配任意一个字母或数字字符</td><td>[[:alnum:]]+</td><td>[:alnum:]</td><td>[:alnum:]</td><td>[:alnum:]</td><td>[:alnum:]</td></tr><tr><td>[:alpha:]</td><td>匹配任意一个字母字符（包括大小写字母）</td><td>[[:alpha:]]{4}</td><td>[:alpha:]</td><td>[:alpha:]</td><td>[:alpha:]</td><td>[:alpha:]</td></tr><tr><td>[:blank:]</td><td>空格与制表符（横向和纵向）</td><td>[[:blank:]]*</td><td>[:blank:]</td><td>[:blank:]</td><td>[:blank:]</td><td>[:blank:]</td></tr><tr><td>[:digit:]</td><td>匹配任意一个数字字符</td><td>[[:digit:]]?</td><td>[:digit:]</td><td>[:digit:]</td><td>[:digit:]</td><td>[:digit:]</td></tr><tr><td>[:lower:]</td><td>匹配小写字母</td><td>[[:lower:]]{5,}</td><td>[:lower:]</td><td>[:lower:]</td><td>[:lower:]</td><td>[:lower:]</td></tr><tr><td>[:upper:]</td><td>匹配大写字母</td><td>([[:upper:]]+)?</td><td>[:upper:]</td><td>[:upper:]</td><td>[:upper:]</td><td>[:upper:]</td></tr><tr><td>[:punct:]</td><td>匹配标点符号</td><td>[[:punct:]]</td><td>[:punct:]</td><td>[:punct:]</td><td>[:punct:]</td><td>[:punct:]</td></tr><tr><td>[:space:]</td><td>匹配</td><td></td><td></td><td></td><td></td><td></td></tr><tr><td>一个包括换行符、回车等在内的所有空白符</td><td>[[:space:]]+</td><td>[:space:]</td><td>[:space:]</td><td>[:space:]</td><td>[:space:]</td><td></td></tr><tr><td>[:graph:]</td><td>匹配任何一个可以看得见的且可以打印的字符</td><td>[[:graph:]]</td><td>[:graph:]</td><td>[:graph:]</td><td>[:graph:]</td><td>[:graph:]</td></tr><tr><td>[:xdigit:]</td><td>任何一个十六进制数（即：0-9，a-f，A-F）</td><td>[[:xdigit:]]+</td><td>[:xdigit:]</td><td>[:xdigit:]</td><td>[:xdigit:]</td><td>[:xdigit:]</td></tr><tr><td>[:cntrl:]</td><td>任何一个控制字符（<a href="http://zh.wikipedia.org/zh/ASCII">ASCII</a>字符集中的前32个字符)</td><td>[[:cntrl:]]</td><td>[:cntrl:]</td><td>[:cntrl:]</td><td>[:cntrl:]</td><td>[:cntrl:]</td></tr><tr><td>[:print:]</td><td>任何一个可以打印的字符</td><td>[[:print:]]</td><td>[:print:]</td><td>[:print:]</td><td>[:print:]</td><td>[:print:]</td></tr></tbody></table>
+<h2 id="元字符"><a aria-hidden="true" tabindex="-1" href="#元字符" class="anchor"><span class="icon icon-link"></span></a>元字符</h2>
+<p>元字符（meta character）是一种Perl风格的正则表达式，只有一部分文本处理工具支持它，并不是所有的文本处理工具都支持。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>正则表达式</th><th>描述</th><th>示例</th><th>Basic RegEx</th><th>Extended RegEx</th><th>Python RegEx</th><th>Perl regEx</th></tr></thead><tbody><tr><td>\b</td><td>单词边界</td><td>\bcool\b 匹配cool，不匹配coolant</td><td>\b</td><td>\b</td><td>\b</td><td>\b</td></tr><tr><td>\B</td><td>非单词边界</td><td>cool\B 匹配coolant，不匹配cool</td><td>\B</td><td>\B</td><td>\B</td><td>\B</td></tr><tr><td>\d</td><td>单个数字字符</td><td>b\db 匹配b2b，不匹配bcb</td><td>不支持</td><td>不支持</td><td>\d</td><td>\d</td></tr><tr><td>\D</td><td>单个非数字字符</td><td>b\Db 匹配bcb，不匹配b2b</td><td>不支持</td><td>不支持</td><td>\D</td><td>\D</td></tr><tr><td>\w</td><td>单个单词字符（字母、数字与_）</td><td>\w 匹配1或a，不匹配&#x26;</td><td>\w</td><td>\w</td><td>\w</td><td>\w</td></tr><tr><td>\W</td><td>单个非单词字符</td><td>\W 匹配&#x26;，不匹配1或a</td><td>\W</td><td>\W</td><td>\W</td><td>\W</td></tr><tr><td>\n</td><td>换行符</td><td>\n 匹配一个新行</td><td>不支持</td><td>不支持</td><td>\n</td><td>\n</td></tr><tr><td>\s</td><td>单个空白字符</td><td>x\sx 匹配x x，不匹配xx</td><td>不支持</td><td>不支持</td><td>\s</td><td>\s</td></tr><tr><td>\S</td><td>单个非空白字符</td><td>x\S\x 匹配xkx，不匹配xx</td><td>不支持</td><td>不支持</td><td>\S</td><td>\S</td></tr><tr><td>\r</td><td>回车</td><td>\r 匹配回车</td><td>不支持</td><td>不支持</td><td>\r</td><td>\r</td></tr><tr><td>\t</td><td>横向制表符</td><td>\t 匹配一个横向制表符</td><td>不支持</td><td>不支持</td><td>\t</td><td>\t</td></tr><tr><td>\v</td><td>垂直制表符</td><td>\v 匹配一个垂直制表符</td><td>不支持</td><td>不支持</td><td>\v</td><td>\v</td></tr><tr><td>\f</td><td>换页符</td><td>\f 匹配一个换页符</td><td>不支持</td><td>不支持</td><td>\f</td><td>\f</td></tr></tbody></table>
+    
+
+<footer class="article-footer warpper">
+  <section>
+    
+    <a href="https://github.com/jaywcjlove/shell-tutorial/blob/master/docs/shell-regex.md" class="edit-button" target="_blank" rel="noopener noreferrer">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+      </svg>
+      <span>Edit this page on GitHub</span>
+    </a>
+    
+    <span class="atime">2022/04/21</span>
+    
+  </section>
+  
+  
+</footer>
+
+  </markdown-style>
+  
+<nav class="tocs">
+  <aside class="inner toc"></aside>
+</nav>
+
+
+<script src="js/tocbot.min.js?v=4.18.2"></script>
+<script>
+tocbot.init({
+  tocSelector: 'aside.inner',
+  contentSelector: 'markdown-style',
+  positionFixedSelector: 'aside.inner',
+  headingSelector: 'h1, h2, h3, h4',
+  collapseDepth: 2,
+
+  includeHtml: true,
+  includeTitleTags: false,
+  hasInnerContainers: true,
+  onClick: (e) => { console.log('you clicked a link', e) },
+  headingsOffset: 40,
+  scrollSmoothOffset: -40,
+});
+</script>
+
+</div>
+
+
+<div class="footer warpper">
+  Released under the MIT License. Copyright © 2022 Kenny Wong<br />
+Generated by <a href="https://github.com/jaywcjlove/idoc" target="_blank">idoc</a> v1.10.9
+
+</div>
+
+</body>
+</html>
