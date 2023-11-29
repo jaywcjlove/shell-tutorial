@@ -5,6 +5,7 @@ favicon: "./logo.svg"
 menus:
   Home: index.html
   Regex: shell-regex.html
+  Sponsor: https://jaywcjlove.github.io/#/sponsor
 
 editButton: 
   label: Edit this page on GitHub

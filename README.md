@@ -3,6 +3,7 @@ Shell Tutorial
 ===
 <!--idoc:ignore:end-->
 
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-048754?logo=buymeacoffee)](https://jaywcjlove.github.io/#/sponsor)
 [![CI](https://github.com/jaywcjlove/shell-tutorial/actions/workflows/ci.yml/badge.svg)](https://github.com/jaywcjlove/shell-tutorial/actions/workflows/ci.yml)
 
 最近需要写一个脚本管理服务，花了两天时间学习了一下shell脚本，记录我的学习笔记。
